@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from .logic_gate import AndLogicGate, OrLogicGate, XorLogicGate
-from .circuit import AdderCircuit
+from .circuit import AdderCircuit, FullAdderCircuit
+from .numbers import Decimal, Binary
 
 
 class LogicGatesTest(object):
@@ -57,6 +58,23 @@ class AdderCircuitTest(object):
         assert adder.get('Cout') == 0
 
 
+class NumbersTest(object):
+    def test_binary_convert(self):
+        decimal = Decimal(100)
+        assert decimal.convert_to_binary().value == '1100100'
+
+        decimal = Decimal(7)
+        assert decimal.convert_to_binary().value == '111'
+
+
+class FullAdderCircuitTest(object):
+    def test_full_adder(self):
+        full_adder = FullAdderCircuit()
+        full_adder.process({'A': Binary(4), 'B': Binary(7)})
+        print("The result was: %s" % full_adder.value)
+        assert full_adder.value == '1011'
+
+
 logic_gates_test = LogicGatesTest()
 logic_gates_test.test_and_logic_gate()
 logic_gates_test.test_or_logic_gate()
@@ -64,5 +82,11 @@ logic_gates_test.test_xor_logic_gate()
 
 adder_circuit_test = AdderCircuitTest()
 adder_circuit_test.test_adder()
+
+number_test = NumbersTest()
+number_test.test_binary_convert()
+
+full_adder_test = FullAdderCircuitTest()
+full_adder_test.test_full_adder()
 
 print("[OK] All tests are passed!")
