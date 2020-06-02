@@ -69,10 +69,16 @@ class NumbersTest(object):
 
 class FullAdderCircuitTest(object):
     def test_full_adder(self):
-        full_adder = FullAdderCircuit()
-        full_adder.process({'A': Binary(4), 'B': Binary(7)})
-        print("The result was: %s" % full_adder.value)
-        assert full_adder.value == '1011'
+        try:
+            full_adder = FullAdderCircuit()
+            full_adder.process({'A': Binary(4), 'B': Binary(7)})
+            assert full_adder.value == '1011'
+
+            full_adder.process({'A': Binary(7), 'B': Binary(1)})
+            assert full_adder.value == '1000'
+        except AssertionError:
+            raise AssertionError("The value %s is not the expected" % full_adder.value)
+
 
 
 logic_gates_test = LogicGatesTest()

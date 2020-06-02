@@ -70,6 +70,10 @@ class FullAdderCircuit(Circuit):
 
         adderCircuit = None
         result = []
+
+        input1.reverse()
+        input2.reverse()
+
         for index in range(input1.len()):
             data = {'A': input1[index], 'B': input2[index]}
             if adderCircuit:

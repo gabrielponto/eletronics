@@ -36,3 +36,7 @@ class Binary(object):
 
     def __getitem__(self, pos):
         return self.value[pos]
+
+    def reverse(self):
+        self.value = self.value[::-1]
+        return self.value
